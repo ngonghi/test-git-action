@@ -19,11 +19,7 @@ jobs:
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: rsync deployments
-      run: rsync -rptgDvz --omit-dir-times --delete --log-file=rsync.log --exclude-from=rsync_exclude.txt -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" src/ report@34.85.116.8:/var/www/html/test/
-
-    - name: set crontab
-      run: cat src/cron.txt | ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no report@34.85.116.8 crontab
+    - uses: "docker://nghinv91/php-grpc:0.1"
       
-    - name: copy config
-      run: ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no report@34.85.116.8 "cp /var/www/html/test/src/setting.prd /var/www/html/test/src/setting"
+    - name: rsync deployments
+      run: composer
