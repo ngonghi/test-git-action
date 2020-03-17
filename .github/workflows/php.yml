@@ -1,0 +1,18 @@
+name: Test Git Action
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: rsync deployments
+      uses: contention/rsync-deployments@v1.0.0
