@@ -20,4 +20,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: rsync deployments
-      run: rsync -auzpv --delete --log-file=rsync.log -e . report@34.85.116.8:/var/www/html/test/
+      run: rsync -auzpv --delete --log-file=rsync.log -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" . report@34.85.116.8:/var/www/html/test/
