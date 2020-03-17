@@ -20,4 +20,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: rsync deployments
-      run: rsync -rptgDvz --omit-dir-times --delete --log-file=rsync.log --exclude-from=rsync_exclude.txt -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" . report@34.85.116.8:/var/www/html/test/
+      run: rsync -rptgDvz --omit-dir-times --delete --log-file=rsync.log --exclude-from=rsync_exclude.txt -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" src/ report@34.85.116.8:/var/www/html/test/
