@@ -19,7 +19,7 @@ jobs:
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - uses: "docker://nghinv91/php-grpc:0.1"
+    - uses: "docker://nghinv91/php-grpc:0.2"
       
     - name: rsync deployments
       run: composer
