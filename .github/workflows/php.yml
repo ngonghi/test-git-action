@@ -14,5 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: ssh key generate
+      run: echo "$SSH_PRIVATE_KEY" ＞ key ＆＆ chmod 600 key
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: rsync deployments
-      uses: contention/rsync-deployments@v1.0.0
+      run: rsync -auzpv --delete --log-file=rsync.log --exclude-from=rsync_exclude.txt -e . report@34.85.116.8:/var/www/html/test/
